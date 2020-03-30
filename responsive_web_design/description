@@ -1,0 +1,2 @@
+W celu uzyskania efektu responsywności wykorzystałem zarówno wymaganą metodologię grid (rozmieszczenie sekcji w centralnej części strony), jak i flexbox (nagłówek, przytrzymanie stopki przy dolnej krawędzi strony).
+Struktura styles.scss została maksymalnie uproszczona dzięki wykorzystaniu możliwości preprocesora sass (m.in. zagnieżdżanie, tworzenie nazw klas z użyciem nazwy klasy rodzica).
