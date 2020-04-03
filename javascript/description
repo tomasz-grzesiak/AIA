@@ -1,0 +1,1 @@
+Po naciśnięciu przycisku dodawania książki następuje utworzenie nowego, niezależnego od innych rekordu poprzez wstawienie go do drzewa DOM. Edycja/zapisywanie możliwe jest poprzez dynamiczne tworzenie i usuwanie elementu 'input' i zamienianie go ze zwykłym tekstem. Rekord usuwany jest poprzez usunięcie całego rekordu tabeli z drzewa DOM.
