@@ -1,0 +1,7 @@
+th, td {
+    width: 200px;
+}
+
+tbody tr:nth-child(odd) {
+    background-color: #DDDDDD;
+}
