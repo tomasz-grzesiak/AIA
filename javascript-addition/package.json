@@ -1,0 +1,20 @@
+{
+  "name": "javascript-addition",
+  "version": "1.0.0",
+  "description": "Get to know, how much time is really worth.",
+  "main": "main.js",
+  "scripts": {
+    "start": "nodemon main.js",
+    "test": "test"
+  },
+  "keywords": [
+    "webscrapper",
+    "wine"
+  ],
+  "author": "Tomasz Grzesiak",
+  "license": "MIT",
+  "dependencies": {
+    "jsdom": "^16.2.2",
+    "request": "^2.88.2"
+  }
+}
