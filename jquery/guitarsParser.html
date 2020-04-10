@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+    <script
+      type="text/javascript"
+      src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"
+    ></script>
+    <script type="text/javascript">
+      function load() {
+        $.getJSON("guitars.json", (data) => {
+          console.log(data);
+          $("body").append("<ol></ol>");
+          data.Guitars.Guitar.forEach((guitar) => {
+            $("ol").append(
+              `<li>Brand: ${guitar.Brand}, Model: ${guitar.Model}</li>`
+            );
+          });
+        });
+      }
+
+      $(function () {
+        $("button").one("click", load);
+      });
+    </script>
+  </head>
+  <body>
+    <button>Pobierz dane</button>
+  </body>
+</html>
