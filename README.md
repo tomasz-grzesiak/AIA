@@ -7,3 +7,6 @@ Assignments for Internet Applications university class
 
 **javascript**
 * Source html file: `javascript/index.html`
+
+**jquery**
+* Source html file for excercise 16: `jquery/Promise.html`
