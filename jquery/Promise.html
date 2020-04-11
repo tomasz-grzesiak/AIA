@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+    <style>
+      div {
+        text-align: center;
+      }
+
+      #container {
+        border: 2px solid black;
+      }
+
+      .color {
+        background-color: lightgray;
+      }
+
+      img,
+      button {
+        margin: 20px;
+      }
+
+      img {
+          margin-bottom: 0;
+      }
+
+      span {
+          margin-bottom: 20px;
+      }
+
+    </style>
+    <script>
+      function getContent(url) {
+        return new Promise(function (resolve, reject) {
+          var req = new XMLHttpRequest();
+          req.open("GET", url);
+          req.onload = function () {
+            if (req.status == 200) {
+              resolve(JSON.parse(req.response).data.memes);
+            } else {
+              reject(Error(req.status+" "+req.statusText));
+            }
+          };
+          req.onerror = function () {
+            reject(Error("Error resolving promise"));
+          };
+          req.send();
+        });
+      }
+
+      let url = "https://api.imgflip.com/get_memes";
+
+      window.onload = () => {
+        document.getElementById("button").addEventListener("click", () => {
+          let content = document.getElementById('content');
+          getContent(url)
+            .then((response) => {
+              response.slice(0, 10).forEach((meme) => {
+                content.innerHTML += `<div><img src="${meme.url}" height=300/><br/><span>${meme.name}</span></div>`;
+              });
+            })
+            .catch(console.error);
+          content.innerHTML = "";
+          content.classList.add("color");
+          content.style.minHeight = "200px";
+        });
+      };
+    </script>
+  </head>
+  <body>
+    <div id="container">
+      <h2>Top 10 most popular meme formats of 2020</h2>
+      <div id="content">
+        <button id="button">Load memes</button>
+      </div>
+    </div>
+  </body>
+</html>

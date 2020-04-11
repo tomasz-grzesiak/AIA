@@ -1,0 +1,1 @@
+Zadania od 1 do 15 wykonane zgodnie z poleceniami. W zadaniu 16 (plik Promise.html) pobierane są dane z adresu https://api.imgflip.com/get_memes, w formacie JSON. Wyświeltanych jest 10 pierwszych elementów otrzymanej tablicy.
