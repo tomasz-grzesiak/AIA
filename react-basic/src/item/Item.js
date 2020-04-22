@@ -8,9 +8,9 @@ class Item extends React.Component {
     this.state = {
       first: this.props.content.first,
       last: this.props.content.last,
-      age: this.props.content.age,
-      edit: false,
+      age: this.props.content.age
     };
+    this.state.edit = this.state.first === '' || this.state.last === '';
   }
 
   edit() {
@@ -66,8 +66,8 @@ class Item extends React.Component {
           )}
         </div>
         <div className="content-row-field space">
-          <button onClick={this.edit.bind(this)}>Edit row</button>
-          <button>Delete row</button>
+          <button onClick={this.edit.bind(this)}>{this.state.edit ? "Save row" : "Edit row"}</button>
+          <button onClick={() => this.props.onRemove(this.props.content.id)}>Delete row</button>
         </div>
       </div>
     );
