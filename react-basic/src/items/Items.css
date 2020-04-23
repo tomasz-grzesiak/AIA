@@ -1,7 +1,6 @@
 #content-header {
     display: grid;
-    grid-template-columns: repeat(4, 25%);
-    text-align: center;
+    grid-template-columns: repeat(5, 20%);
     margin-bottom: 20px;
     background-color: rgb(151, 183, 241);
     padding: 5px 0;
@@ -15,6 +14,9 @@
     padding: 5px;
     font-size: 1.2rem;
     font-weight: bold;
+    display:flex;
+    align-items: center;
+    justify-content: center;
 }
 
 input {
@@ -27,4 +29,8 @@ input {
 #addButton {
     float: right;
     margin: 10px 5px 0 0;
+}
+
+.cursor {
+    cursor: pointer;
 }

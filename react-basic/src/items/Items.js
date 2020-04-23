@@ -1,72 +1,71 @@
 import React from 'react'
 
 import './Items.css'
+import data from '../characters.json'
 import Item from '../item/Item'
 
 class Items extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
-            items: [
-                {id: 1, first: 'Dylan', last: 'Smith', age: 67},
-                {id: 2, first: 'Robin', last: 'Green', age: 82},
-                {id: 3, first: 'Vincent', last: 'Lopez', age: 55},
-                {id: 4, first: 'Anna', last: 'Vanic', age: 23}
-            ],
-            sortFirst: false,
-            sortLast: false,
-            sortAge: false
+            items: data,
+            search: '',
+            sortName: false,
+            sortRating: false
         };
     }
 
-    addRow() {//TODO something wrong
+    addRow() {
         const items = this.state.items;
-        items.push({id: items[items.length -1].id+1, first: '', last: '', age: 0});
+        const id = items.length > 0 ? items.reduce((a,b) => a.id > b.id ? a : b).id + 1 : 1;
+        items.push({id: id, name: '', description: '', rating: 0});
+        this.setState({items: items});
+    }
+
+    saveRow = row => {
+        const items = this.state.items;
+        items[items.findIndex(item => item.id === row.id)] = row;
+        this.setState({items: items});
+    }
+
+    removeRow = id => {
+        this.setState({items: this.state.items.filter(item => item.id !== id)});
+    }
+
+    sortByName() {
+        const items = this.state.items;
+        this.state.sortName ? 
+            this.setState({items: items.sort((a, b) => (a.name >= b.name) ? -1 : 1)}) :
+            this.setState({items: items.sort((a, b) => (a.name >= b.name) ? 1 : -1)});
+        this.setState({sortName: !this.state.sortName, sortRating: false});
+    }
+
+    sortByRating() {
+        const items = this.state.items;
+        this.state.sortRating ? 
+            items.sort((a, b) => (a.rating >= b.rating) ? -1 : 1) :
+            items.sort((a, b) => (a.rating >= b.rating) ? 1 : -1);
         this.setState(items);
-        console.log(items);
+        this.setState({sortName: false, sortRating: !this.state.sortRating});
     }
 
-    removeRow = id => { // TODO something wrong
-        let items = this.state.items;
-        items = items.filter(item => item.id !== id);
-        this.setState(items);
-        console.log(items);
-    }
-
-    sortByFirst() {
-        const items = this.state.items;
-        this.state.sortFirst ? 
-            this.setState({items: items.sort((a, b) => (a.first > b.first) ? -1 : 1)}) :
-            this.setState({items: items.sort((a, b) => (a.first > b.first) ? 1 : -1)});
-        this.setState({sortFirst: !this.state.sortFirst});
-    }
-
-    sortByLast() {
-        const items = this.state.items;
-        this.state.sortLast ? 
-            this.setState({items: items.sort((a, b) => (a.last > b.last) ? -1 : 1)}) :
-            this.setState({items: items.sort((a, b) => (a.last > b.last) ? 1 : -1)});
-        this.setState({sortLast: !this.state.sortLast});
-    }
-
-    sortByAge() {
-        const items = this.state.items;
-        this.state.sortAge ? 
-            items.sort((a, b) => (a.age > b.age) ? -1 : 1) :
-            items.sort((a, b) => (a.age > b.age) ? 1 : -1);
-        this.setState(items);
-        this.setState({sortAge: !this.state.sortAge});
+    searchChange(event) {
+        this.setState({search: event.target.value});
+        console.log(this.state.items)
     }
 
     render() {
         return <div id="content">
                     <div id="content-header">
-                        <div className="content-header-field" onClick={() => this.sortByFirst()}>First name</div>
-                        <div className="content-header-field" onClick={() => this.sortByLast()}>Last name</div>
-                        <div className="content-header-field" onClick={() => this.sortByAge()}>Age</div>
-                        <div className="content-header-field">Actions</div>
+                        <div className="content-header-field">Image</div>
+                        <div className="content-header-field cursor" onClick={() => this.sortByName()}>Name</div>
+                        <div className="content-header-field">Description</div>
+                        <div className="content-header-field cursor" onClick={() => this.sortByRating()}>Rating</div>
+                        <div className="content-header-field"><input type="text" value={this.state.search} 
+                            onChange={this.searchChange.bind(this)} placeholder="Search by name"/></div>
                     </div>
-                {this.state.items.map(item => <Item key={item.id} content={item} onRemove={this.removeRow}/>)}
+                {this.state.items.filter(item => item.name.includes(this.state.search))
+                    .map(item => <Item key={item.id} content={item} onRemove={this.removeRow} onSave={this.saveRow}/>)}
                 <button id="addButton" onClick={() => this.addRow()}>Add row</button>
         </div>
     }

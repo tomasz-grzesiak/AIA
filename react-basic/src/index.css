@@ -1,9 +1,10 @@
 html {
   height: 100%;
-  background-image: url(./pobrane.jpeg);
+  background: url(./background.jpeg) no-repeat center center fixed;
+  -webkit-backgroung-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
   background-size: cover;
-  background-position: center center;
-  background-repeat: no-repeat;
 }
 
 body {

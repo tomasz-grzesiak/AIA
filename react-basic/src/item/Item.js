@@ -6,62 +6,71 @@ class Item extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      first: this.props.content.first,
-      last: this.props.content.last,
-      age: this.props.content.age
+      id: this.props.content.id,
+      image: this.props.content.image,
+      name: this.props.content.name,
+      description: this.props.content.description,
+      rating: this.props.content.rating
     };
-    this.state.edit = this.state.first === '' || this.state.last === '';
+    this.state.edit = this.state.name === '' || this.state.description === '';
   }
 
   edit() {
-    this.setState({ edit: !this.state.edit });
+    if (this.state.edit){
+      this.props.onSave({id: this.state.id, image: this.state.image, name: this.state.name,
+        description: this.state.description, rating: this.state.rating});
+    }
+    this.setState({ edit: !this.state.edit });  
   }
 
-  firstChange(event) {
-    this.setState({ first: event.target.value });
+  nameChange(event) {
+    this.setState({ name: event.target.value });
   }
 
-  lastChange(event) {
-    this.setState({ last: event.target.value });
+  descriptionChange(event) {
+    this.setState({ description: event.target.value });
   }
 
-  ageChange(event) {
-    this.setState({ age: Math.max(event.target.value, 0) });
+  ratingChange(event) {
+    this.setState({ rating: Math.max(event.target.value, 0) });
   }
 
   render() {
     return (
       <div className="content-row">
-        <div className="content-row-field center">
+        <div className="content-row-field space">
+          <img src={this.state.image} alt={this.state.name} /> 
+        </div>
+        <div className="content-row-field space">
           {!this.state.edit ? (
-            this.state.first
+            this.state.name
           ) : (
             <input
               type="text"
-              value={this.state.first}
-              onChange={this.firstChange.bind(this)}
+              value={this.state.name}
+              onChange={this.nameChange.bind(this)}
             />
           )}
         </div>
-        <div className="content-row-field center">
+        <div className="content-row-field space">
           {!this.state.edit ? (
-            this.state.last
+            this.state.description
           ) : (
-            <input
+            <textarea 
               type="text"
-              value={this.state.last}
-              onChange={this.lastChange.bind(this)}
+              value={this.state.description}
+              onChange={this.descriptionChange.bind(this)}
             />
           )}
         </div>
-        <div className="content-row-field center">
+        <div className="content-row-field space">
           {!this.state.edit ? (
-            this.state.age
+            this.state.rating
           ) : (
             <input
               type="number"
-              value={this.state.age}
-              onChange={this.ageChange.bind(this)}
+              value={this.state.rating}
+              onChange={this.ratingChange.bind(this)}
             />
           )}
         </div>
