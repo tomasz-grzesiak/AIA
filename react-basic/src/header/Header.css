@@ -1,11 +1,8 @@
-@import url(http://pl.allfont.net/allfont.css?fonts=star-jedi);
-
 h1 {
     font-size: 6rem;
     text-align: center;
     -webkit-text-stroke-width: 4px;
     -webkit-text-stroke-color: yellow;
-    font-family: 'Star Jedi', arial;
 }
 
 h3 {

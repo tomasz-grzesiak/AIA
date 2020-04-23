@@ -18,7 +18,7 @@ class Items extends React.Component {
     addRow() {
         const items = this.state.items;
         const id = items.length > 0 ? items.reduce((a,b) => a.id > b.id ? a : b).id + 1 : 1;
-        items.push({id: id, name: '', description: '', rating: 0});
+        items.push({id: id, image: '', name: '', description: '', rating: 0});
         this.setState({items: items});
     }
 
@@ -61,7 +61,7 @@ class Items extends React.Component {
                         <div className="content-header-field cursor" onClick={() => this.sortByName()}>Name</div>
                         <div className="content-header-field">Description</div>
                         <div className="content-header-field cursor" onClick={() => this.sortByRating()}>Rating</div>
-                        <div className="content-header-field"><input type="text" value={this.state.search} 
+                        <div className="content-header-field"><input type="search" value={this.state.search} 
                             onChange={this.searchChange.bind(this)} placeholder="Search by name"/></div>
                     </div>
                 {this.state.items.filter(item => item.name.includes(this.state.search))

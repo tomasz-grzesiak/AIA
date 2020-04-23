@@ -23,6 +23,10 @@ class Item extends React.Component {
     this.setState({ edit: !this.state.edit });  
   }
 
+  imageChange(event) {
+    this.setState({image: event.target.value})
+  }
+
   nameChange(event) {
     this.setState({ name: event.target.value });
   }
@@ -39,7 +43,16 @@ class Item extends React.Component {
     return (
       <div className="content-row">
         <div className="content-row-field space">
-          <img src={this.state.image} alt={this.state.name} /> 
+          {!this.state.edit ? (
+            <img src={this.state.image} alt={this.state.name} /> 
+          ) : (
+            <input
+              type="url"
+              value={this.state.image}
+              placeholder="Valid url to image"
+              onChange={this.imageChange.bind(this)}
+            />
+          )}
         </div>
         <div className="content-row-field space">
           {!this.state.edit ? (
@@ -48,6 +61,7 @@ class Item extends React.Component {
             <input
               type="text"
               value={this.state.name}
+              placeholder="Character's name"
               onChange={this.nameChange.bind(this)}
             />
           )}
@@ -59,6 +73,7 @@ class Item extends React.Component {
             <textarea 
               type="text"
               value={this.state.description}
+              placeholder="character's description"
               onChange={this.descriptionChange.bind(this)}
             />
           )}

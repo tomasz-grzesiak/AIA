@@ -1,3 +1,7 @@
 responsive_web_design/*.css
 responsive_web_design/*.css.map
-javascript-addition/node_modules
+
+*node_modules
+
+react-basic/dataparser.js
+react-basic/src/data.json

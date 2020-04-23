@@ -26,9 +26,14 @@ input {
     font-size: 1rem;
 }
 
+textarea {
+    text-align: center;
+}
+
 #addButton {
     float: right;
-    margin: 10px 5px 0 0;
+    margin: 10px 0 50px 0;
+    width: 20%;
 }
 
 .cursor {
