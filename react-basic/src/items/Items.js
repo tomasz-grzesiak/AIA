@@ -64,7 +64,7 @@ class Items extends React.Component {
                         <div className="content-header-field"><input type="search" value={this.state.search} 
                             onChange={this.searchChange.bind(this)} placeholder="Search by name"/></div>
                     </div>
-                {this.state.items.filter(item => item.name.includes(this.state.search))
+                {this.state.items.filter(item => item.name.toLowerCase().includes(this.state.search))
                     .map(item => <Item key={item.id} content={item} onRemove={this.removeRow} onSave={this.saveRow}/>)}
                 <button id="addButton" onClick={() => this.addRow()}>Add row</button>
         </div>

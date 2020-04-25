@@ -11,3 +11,7 @@ Assignments for Internet Applications university class
 **jquery**
 * Source html file for excercise 15: `jquery/guitarsParser.html`
 * Source html file for excercise 16: `jquery/Promise.html`
+
+**react-basic**
+* Get into `react-basic` directory
+* Run `npm start`
