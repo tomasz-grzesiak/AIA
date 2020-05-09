@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Main</title>
+    <link rel="stylesheet" type="text/css" href="index.css" />
+</head>
+<body>
+<header>
+    <div class="header-elem">
+        <h1>Shopping cart</h1>
+        <h2>Get your favourite planet in a second!</h2>
+    </div>
+    <div>
+        <a href="/">
+            <img src="shop.jpg" alt="Back to shopping" height="80">
+        </a>
+    </div>
+</header>
+
+<% if (planets.length === 0) { %>
+    <div>You haven't picked anything yet :(</div>
+<% } else { %>
+    <div id="header-row">
+        <div class="row-elem">Name</div>
+        <div class="row-elem">Price</div>
+        <div class="row-elem">Action</div>
+    </div>
+    <% planets.forEach( planet => { %>
+        <div class="row">
+            <div class="row-elem"><%= planet.name %></div>
+            <div class="row-elem"><%= planet.price %></div>
+            <div class="row-elem ">
+                <form action="/removePlanet" method="post">
+                    <input class="hidden" type="number" name="planetId" value=<%= planet.id %> />
+                    <input type="submit" value="Delete from shopping cart" />
+                </form>
+            </div>
+        </div>
+    <% }); %>
+    <div id="finalize">
+        <form action="/finalize" method="post" >
+            <input type="submit" value="Buy planets!" />
+        </form>
+        <form action="/discard" method="post" >
+            <input type="submit" value="Nope, maybe another time" />
+        </form>
+    </div>
+<% } %>
+</body>
+</html>

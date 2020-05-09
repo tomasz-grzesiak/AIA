@@ -7,8 +7,17 @@
     <link rel="stylesheet" type="text/css" href="index.css" />
 </head>
 <body>
-<h1>Cosmic shop</h1>
-<h2>Best prices from here to Betelgeuse</h2>
+<header>
+    <div class="header-elem">
+        <h1>Cosmic shop</h1>
+        <h2>Best prices from here to Betelgeuse</h2>
+    </div>
+    <div>
+        <a href="/cart">
+            <img src="cart.png" alt="To shopping cart" height="80">
+        </a>
+    </div>
+</header>
 <% if (planets.length === 0) { %>
     <div>Oooops, store is empty! Everything taken...</div>
 <% } else { %>
@@ -20,9 +29,10 @@
     <% planets.forEach( planet => { %>
         <div class="row">
             <div class="row-elem"><%= planet.name %></div>
-            <div class="row-elem"><%= planet.cost %></div>
+            <div class="row-elem"><%= planet.price %></div>
             <div class="row-elem">
                 <form action="/addPlanet" method="post">
+                    <input class="hidden" type="number" name="planetId" value="<%= planet.id %>" />
                     <input type="submit" value="Add to shopping cart" />
                 </form>
             </div>

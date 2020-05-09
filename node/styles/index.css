@@ -6,15 +6,29 @@ h1, h2, div {
     text-align: center;
 }
 
-.row, #header-row {
+.row, #header-row, header {
     display: flex;
 }
 
-.row-elem {
+.row-elem, .header-elem {
     width: 100%;
 }
 
 #header-row {
     font-weight: bold;
     margin: 10px 0;
+}
+
+.hidden {
+    display: none;
+}
+
+img {
+    padding: 20px;
+    margin-right: 50px;
+}
+
+#finalize {
+    display: flex;
+    justify-content: space-around;
 }
