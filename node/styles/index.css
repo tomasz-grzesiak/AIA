@@ -1,0 +1,20 @@
+body {
+    margin-top: 20px;
+}
+
+h1, h2, div {
+    text-align: center;
+}
+
+.row, #header-row {
+    display: flex;
+}
+
+.row-elem {
+    width: 100%;
+}
+
+#header-row {
+    font-weight: bold;
+    margin: 10px 0;
+}

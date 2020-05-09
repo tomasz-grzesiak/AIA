@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Main</title>
+    <link rel="stylesheet" type="text/css" href="index.css" />
+</head>
+<body>
+<h1>Cosmic shop</h1>
+<h2>Best prices from here to Betelgeuse</h2>
+<% if (planets.length === 0) { %>
+    <div>Oooops, store is empty! Everything taken...</div>
+<% } else { %>
+    <div id="header-row">
+        <div class="row-elem">Name</div>
+        <div class="row-elem">Price</div>
+        <div class="row-elem">Shopping cart</div>
+    </div>
+    <% planets.forEach( planet => { %>
+        <div class="row">
+            <div class="row-elem"><%= planet.name %></div>
+            <div class="row-elem"><%= planet.cost %></div>
+            <div class="row-elem">
+                <form action="/addPlanet" method="post">
+                    <input type="submit" value="Add to shopping cart" />
+                </form>
+            </div>
+        </div>
+<% }); } %>
+</body>
+</html>
