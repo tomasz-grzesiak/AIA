@@ -16,14 +16,16 @@
     </style>
 </head>
 <body>
-    <h4>Your shopping cart status has been successfully upgraded.</h4>
+    <h4><%= message %></h4>
     <div>
     <form action="/" method="get">
         <input type="submit" value="Continue shopping" />
     </form>
+        <% if (choice) { %>
         <form action="/cart" method="get" >
             <input type="submit" value="See shopping cart"/>
         </form>
+        <%  } %>
     </div>
 </body>
 </html>
