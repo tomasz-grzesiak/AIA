@@ -15,3 +15,7 @@ Assignments for Internet Applications university class
 **react-basic**
 * Get into `react-basic` directory
 * Run `npm start`
+
+**node.js**
+* Get into `node` directory
+* Run `npm start`
