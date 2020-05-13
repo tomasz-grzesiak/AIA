@@ -1,0 +1,20 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>@Page.Title</title>
+    <link rel="stylesheet" type="text/css" href="~/Store/Style.css" />
+</head>
+<body>
+    <div>
+        <header>
+            <h1>@Page.Header</h1>
+            <h3>@Page.Subheader</h3>
+        </header>
+        <div id="content">@RenderBody()</div>
+    </div>
+    <footer>
+        <span>Proudly powered by SpaceSloth</span>
+    </footer>
+</body>
+</html>

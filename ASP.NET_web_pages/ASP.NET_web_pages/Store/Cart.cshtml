@@ -1,0 +1,54 @@
+﻿@{
+    Page.Title = "Shopping cart";
+    Page.Header = "Shopping cart";
+    Page.Subheader = "Buy all and come back for more!";
+
+    if (Session["cart"] == null)
+    {
+        Session["cart"] = new List<string>();
+    }
+    var cart = Session["cart"] as List<string>;
+
+    if (IsPost)
+    {
+        if (!Request["item"].IsEmpty())
+        {
+            cart.Remove(Request["item"]);
+            Session["cart"] = cart;
+        }
+
+        Response.Redirect("~/Store/Cart.cshtml");
+    }
+}
+@if (cart.Count > 0)
+{
+    foreach (string item in cart)
+    {
+        <div class="row">
+            <div class="item">@item</div>
+            <div class="item-action">
+                <form action="~/Store/Cart.cshtml" method="post">
+                    <input type="hidden" name="item" value="@item" />
+                    <input type="submit" value="Remove item from cart" />
+                </form>
+            </div>
+        </div>
+    }
+} else
+{
+    <p>You haven't picked any items yet :(</p>
+}
+<div class="right">
+    <form action="~/Store/List.cshtml" method="get">
+        <input type="submit" value="Go to list of items" />
+    </form>
+</div>
+@if (cart.Count > 0)
+{
+    <div class="right">
+        <form action="~/Store/List.cshtml" method="post">
+            <input type="hidden" name="buy" value="okey" />
+            <input type="submit" value="Buy 'em all!" />
+        </form>
+    </div>
+}

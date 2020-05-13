@@ -1,0 +1,63 @@
+﻿@{
+    Page.Title = "Product list";
+    Page.Header = "Anything a knight may need";
+    Page.Subheader = "Best weapons for dragons and whiches";
+
+    List<string> items = new List<string>() {
+        "Boots of Speed",
+        "Faerie Charm",
+        "Rejuvenation Bead",
+        "Giant's Belt",
+        "Cloak of Agility",
+        "Blasting Wand",
+        "Sapphire Crystal",
+        "Ruby Crystal",
+        "Cloth Armor",
+        "Chain Vest",
+        "Null-Magic Mantle",
+        "Long Sword",
+        "Pickaxe",
+        "B. F. Sword",
+        "Hunter's Talisman",
+        "Hunter's Machette"
+    };
+
+    if (IsPost) {
+        if (Session["cart"] == null) {
+            Session["cart"] = new List<string>();
+        }
+
+        List<string> cart = Session["cart"] as List<string>;
+        if (!Request["item"].IsEmpty()) {
+            if (!cart.Exists(item => item.Equals(Request["item"])))
+            {
+                cart.Add(Request["item"]);
+                Session["cart"] = cart;
+            }
+        }
+        if (!Request["buy"].IsEmpty())
+        {
+            cart = new List<string>();
+            Session["cart"] = cart;
+        }
+        Response.Redirect("~/Store/List.cshtml");
+    }
+}
+
+@foreach (string item in items)
+{
+    <div class="row">
+        <div class="item">@item</div>
+        <div class="item-action">
+            <form action="~/Store/List.cshtml" method="post">
+                <input type="hidden" name="item" value="@item" />
+                <input type="submit" value="Add item to cart" />
+            </form>
+        </div>
+    </div>
+}
+<div class="right">
+    <form action="~/Store/Cart.cshtml" method="get">
+        <input type="submit" value="Go to shopping cart" />
+    </form>
+</div>

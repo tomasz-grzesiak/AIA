@@ -1,9 +1,16 @@
 responsive_web_design/*.css
 responsive_web_design/*.css.map
-
 *node_modules
 
 react-basic/dataparser.js
 react-basic/src/data.json
 
-.idea/*
+ASP.NET_web_pages/*.sln
+ASP.NET_web_pages/packages
+*bin
+*obj
+*.config
+*.csproj
+*.csproj.user
+*.idea/*
+*.vs
