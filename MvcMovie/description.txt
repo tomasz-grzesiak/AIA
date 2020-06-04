@@ -1,0 +1,25 @@
+1. Za co odpowiedzialna jest ka¿da z warstw architektury MVC i w jaki sposób s¹ one ze sob¹ po³¹czone?
+	Modele reprezentuj¹ dane wykorzystywane przez aplikacjê, odpowiadaj¹ najczêœciej za odczytywanie i przechowywanie danych z bazy danych (model reprezentuje rekord tabeli).
+Widoki s¹ odpowiedzialne za wyœwietlanie interfejsu dla u¿ytkownika. Widoki czerpi¹ dane potrzebne do dzia³ania od odpowiednich modeli.
+Kontrolery odpowiadaj¹ za obs³ugiwanie zapytañ HTTP. Kontrolery mog¹ wykorzystywaæ modele, np. tworzyæ je z u¿yciem parametrów zapytania, oraz aktywuj¹ w odpowiedzi na zapytanie widok z odpowiednimi danymi.
+
+2. Jakim konwencjom nazewniczym podlegaj¹ modele, kontrolery, akcje kontrolerów, foldery widoków oraz same widoki?
+	Modele odpowiadaj¹ nazw¹ tabelom w bazie danych. Nazwa kontroleru musi byæ zakoñczona sufiksem 'Controller'. Pozosta³a czêœæ nazwy kotrolera oraz nazwa akcji odpowiadaj¹ czêœciom adresu URL, zapytanie do którego maj¹ obs³ugiwaæ (zgodnie z wzorem zdefiniowanym w pliku Startup.cs).
+Struktura folderów z widokami musi odpowiadaæ kontrolerom: jeden folder - jeden kontroler; pliki widoków zawarte w folderze powinny mieæ nazwy identyczne z nazwami akcji kontrolera.
+
+3. Jak przekazaæ dane z kontrolerów do widoków (2 sposoby)?
+	1. Za pomoc¹ s³ownika ViewData. Mo¿na przekazaæ dane dowolnego typu.
+	2. Poprzez argument dla zwracanego przez akcjê kontrolera View(); widok musi na pocz¹tku mieæ zdefiniowan¹ w³aœciowoœæ @model okreœlaj¹c¹ typ przekazywanego przy tworzeniu obiektu.
+
+4. Jak zmapowaæ adres URL na akcje kontrolera?
+	Sposób mapowania okreœlony jest w pliku Startup.cs, jako ostatni element funkcji Configure.
+
+5. W jaki sposób ograniczyæ dzia³anie akcji kontrolera do obs³ugi jedynie konkretnych typów zapytañ HTTP (np. tylko POST)?
+	Poprzez anotacje nad deklaracjami akcji, np. dla obs³ugi tylko zapytañ POST: [HttpPost]. Domyœln¹ anotacj¹ jest [HttpGet].
+
+6. Jak zapewniæ, ¿e akcjê kontrolera mo¿na wywo³aæ jedynie poprzez formularz zawarty na stronie, a nie poprzez zewnêtrzne zapytanie?
+	Do formularza generowanego przez widok do³¹czany jest ukryty tag <input>, zawieraj¹cy wygenerowany przez aplikacjê token XSRF, który prrzesy³any jest razem z zapytaniem (dotyczy to najczêœciej zapytañ POST).
+Akcja kontrolera obs³uguj¹ca zapytanie posiada anotacjê [ValidateAntiForgeryToken], która sprawdza poprawnoœæ przes³anego w zapytaniu tokenu.
+
+7. Gdzie definiuje siê walidacjê danych i w jaki sposób zapewnia siê jej dzia³anie w widokach i kontrolerach?
+	Walidacja danych jest definiowana za pomoc¹ anotacji w modelu. Widoki i kontrolery korzystaj¹ce z tego modelu automatycznie waliduj¹ dane wed³ug okreœlonych w nim zasad.
